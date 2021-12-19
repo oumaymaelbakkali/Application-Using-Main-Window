@@ -89,7 +89,7 @@ when we will complete the creation of all actions and group them in menus we wil
  ### Functionalities of the Text Editor:
    #### Functionality of New action
  
-   when we click on the action New  ,we send a signal called triggered(),and the response or the slot of this signal is clear  the  file currentfile that was originally            created with our application,and then we also clear the text edit widget.
+ when we click on the action New ,we send triggered() signal,and the slot of this signal is a function that  clear  the currentfile that was originally created with our application,and also clear the text edit widget.
    
  ```cpp
      void MainWindow::on_actionNew_triggered()
