@@ -101,7 +101,15 @@ Then,we make a connection between NewFile and NewSlot in the methode makeconnect
   ```
 #### Functionality of goCell
 when,we click on goCell action we will show a QDialog that has a QLineEdit that allow to user to write which cell he want to go.<br />
-and for do that ,the first step is create a Qdialog with class form and then  get the expression which the user write and compare with our regexpression,if it true the user will go to the cell ,else he must try to write expression equal our regexpression.
+and for do that ,the first step is create a Qdialog with class form and then  get the expression which the user write and compare with our regexpression,<br />
+```cpp
+     //Validating the regular expression
+    QRegExp regCell{"[A-Z][1-9][0-9]{0,2}"};
+
+    //Validating the regular expression
+    ui->lineEdit->setValidator(new QRegExpValidator(regCell));
+```
+if it true the user will go to the cell ,else he must try to write expression equal our regexpression.
  ```cpp
    {
      //Creating the dialog
@@ -123,6 +131,10 @@ and for do that ,the first step is create a Qdialog with class form and then  ge
      }
    }
  ```
+ ```cpp
+   //Connextion between the gocell action and the gocell slot
+   connect(goCell, &QAction::triggered, this, &spreadsheet::goCellSlot);
+ ```
  as a result if we click on gocell we will show the following QDialog:<br />
   ![image](https://user-images.githubusercontent.com/93142901/146675854-6c83d596-144c-4b2b-9a69-190b7913d237.png)<br />
  We write A as Row and 15 as a column ,we will go to cell ( A,15)<br />
@@ -130,7 +142,14 @@ and for do that ,the first step is create a Qdialog with class form and then  ge
 
 #### Functionality of Find:
 when,we click on Find action we will show a QDialog that has a QLineEdit that allow to user to write which value he want to find.<br />
-and for do that ,the first step is create a Qdialog with class form and then  get the expression which the user write and compare with our regexpression,if it true the user will go to the cell that has the value which the user search,else he must try to write expression equal our regexpression,or the value  not found in any cell.
+and for do that ,the first step is create a Qdialog with class form and then  get the expression which the user write and compare with our regexpression<br />
+```cpp
+  
+    QRegExp exp{"[A-Z][a-z][a-z]{0,3}"};
+    ui->lineEdit->setValidator(new QRegExpValidator(exp));
+ 
+```
+,if it true the user will go to the cell that has the value which the user search,else he must try to write expression equal our regexpression,or the value  not found in any cell.
 ```cpp
    Dialog D;
     auto replay=D.exec();
@@ -144,6 +163,10 @@ and for do that ,the first step is create a Qdialog with class form and then  ge
 
               }
     }
+```
+```cpp
+  //Connextion between the search action and the finddialog slot
+  connect(find,&QAction::triggered,this,&spreadsheet::finddialog);
 ```
  as a result if we click on find we will show the following QDialog:<br />
  ![image](https://user-images.githubusercontent.com/93142901/146676279-7dd889f7-aad8-4803-bb01-ab561d761e4f.png)<br />
@@ -335,7 +358,7 @@ we will use a message box for displaying aboutQT.
 }
 ```
 ## Conclusion
-  
+ this Homwork helped me to enhance and improve my abilities as a programer . it gives me the opportunity to use QT designer and to  create an application via two different methods. 
 
 
   
